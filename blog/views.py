@@ -8,13 +8,13 @@ posts = [
     {
         'title': 'first Post',
         'author': 'John Smith',
-        'post_date': '01.02.1999',
+        'date_posted': '01.02.1999',
         'content': 'content of first post'
     },
     {
         'title': 'sevond Post',
         'author': 'John SS',
-        'post_date': '02.05.2005',
+        'date_posted': '02.05.2005',
         'content': 'content of second post'
     }
 ]

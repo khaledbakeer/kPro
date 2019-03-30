@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from users.forms import UserRegistrationForm
 
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -19,5 +19,5 @@ def register(request):
             # messages.warning()
             return redirect('blog_homePage')
     else:
-        form = UserCreationForm()
+        form = UserRegistrationForm()
     return render(request, 'users/registration.html', {'form': form, 'title': 'Registration'})

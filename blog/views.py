@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from blog.models import Post
 
 
@@ -25,6 +25,15 @@ class PostDetailView(DetailView):  # one post
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):  # to view new post have to be logged in
+    model = Post
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):  # to view new post have to be logged in
     model = Post
     fields = ['title', 'content']
 

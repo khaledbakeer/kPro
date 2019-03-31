@@ -5,7 +5,7 @@
         <img src="{{ object.author.profile.image.url }}" class="rounded-circle article-img">
         <div class="media-body">
             <div class="article-metadata">
-                <a class="mr-2" href="#">{{ object.author }}</a>
+                <a class="mr-2" href="{% url 'user_posts' object.author.username %}">{{ object.author }}</a>
                 {# date template: https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#date #}
                 <small class="text-muted">{{ object.date_posted|date:"d.m.Y | G:i" }}</small>
                 {% if object.author == user %}

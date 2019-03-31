@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from blog.models import Post
 
@@ -19,9 +20,27 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-date_posted']  # order the posts. The new one first. just add '-'
 
-    # show 2 posts per page, you can navigate manuel like : http://127.0.0.1:8000/?page=3
+    # show 5 posts per page, you can navigate manuel like : http://127.0.0.1:8000/?page=3
     # this will show the third page
-    paginate_by = 2
+    paginate_by = 5
+
+
+class UserPostListView(ListView):
+    """
+    all posts of a user
+    """
+    model = Post
+    template_name = 'blog/user_posts.html'  # antwort auf debug message von: <app>/<model>_<viewtype>.html
+    context_object_name = 'posts'
+    # ordering = ['-date_posted']  # order the posts. The new one first. just add '-'
+
+    # show 5 posts per page, you can navigate manuel like : http://127.0.0.1:8000/?page=3
+    # this will show the third page
+    paginate_by = 5
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-date_posted')
 
 
 class PostDetailView(DetailView):  # one post

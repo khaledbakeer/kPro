@@ -19,6 +19,10 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-date_posted']  # order the posts. The new one first. just add '-'
 
+    # show 2 posts per page, you can navigate manuel like : http://127.0.0.1:8000/?page=3
+    # this will show the third page
+    paginate_by = 2
+
 
 class PostDetailView(DetailView):  # one post
     model = Post

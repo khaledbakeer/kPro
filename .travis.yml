@@ -1,9 +1,1 @@
 language: python
-    python:
-      - "2.72"
-    env:
-      -DJANGO=2.1.7
-    install:
-      - pip install -r requirements.txt
-    script:
-      - python manage.py test

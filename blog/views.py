@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from blog.models import Post
 
 
@@ -40,6 +40,18 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):  # to
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def test_func(self):  # to be sure that the user edit just his posts
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin,
+                     DeleteView):  # have to be logged in to be able to delete posts
+    model = Post
+    success_url = '/'
 
     def test_func(self):  # to be sure that the user edit just his posts
         post = self.get_object()

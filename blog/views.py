@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView
 from blog.models import Post
 
@@ -23,7 +24,7 @@ class PostDetailView(DetailView):  # one post
     model = Post
 
 
-class PostCreateView(CreateView):  # one post
+class PostCreateView(LoginRequiredMixin, CreateView):  # to view new post have to be logged in
     model = Post
     fields = ['title', 'content']
 

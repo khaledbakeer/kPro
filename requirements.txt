@@ -1,8 +1,8 @@
-Django==2.1.7
-django-crispy-forms==1.7.2
-dnspython==1.16.0
-paho-mqtt==1.4.0
-Pillow==5.4.1
-python-etcd==0.4.5
-pytz==2018.9
-urllib3==1.24.1
+Django
+django-crispy-forms
+dnspython
+paho-mqtt
+Pillow
+python-etcd
+pytz
+urllib3

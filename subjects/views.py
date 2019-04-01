@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from subjects.models import Subject
 
@@ -17,3 +17,7 @@ class SubjectListView(ListView):
     context_object_name = 'subjects'
     ordering = ['-date_posted']  # order the posts. The new one first. just add '-'
     paginate_by = 5
+
+
+class SubjectDetailView(DetailView):  # one post
+    model = Subject

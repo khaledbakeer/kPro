@@ -1,0 +1,89 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+    <article class="media content-section">
+        {#        <img src="{{ object.author.profile.image.url }}" class="rounded-circle article-img">#}
+        <div class="media-body">
+            <div class="article-metadata">
+                {#                <a class="mr-2" href="{% url 'user_posts' object.author.username %}">{{ object.author }}</a>#}
+                {# date template: https://docs.djangoproject.com/en/2.1/ref/templates/builtins/#date #}
+                <small class="text-muted"> created at: {{ object.date_posted|date:"d.m.Y | G:i" }}</small>
+                {% if object.author == user %}
+                    <div>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post_update' object.id %}">
+                            Update</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post_delete' object.id %}"> Delete</a>
+
+                    </div>
+                {% endif %}
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Modulnummer</th>
+                    <th scope="col">Modulname</th>
+                    <th scope="col">Verantwortlicher Dozent</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td rowspan="2">{{ object.subject_number }}</td>
+                    <td rowspan="2">{{ object.subject_name }}</td>
+                    <td>{{ subject.responsible_lecturer_name }}</td>
+                </tr>
+                <tr>
+
+                    <td><a href="mailto:{{ object.responsible_lecturer_email }}">E-Mail schreiben</a></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Inhalte und Qualifikationsziele</th>
+                    <td colspan="2">{{ object.content_and_goals }}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Lehr- und Lernformen</th>
+                    <td colspan="2">{{ object.teaching_and_learning_forms }}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Voraussetzungen für die Teilnahme</th>
+                    <td colspan="2">{{ object.requirements_for_participation }}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Verwendbarkeit</th>
+                    <td colspan="2">{{ object.usability }}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Voraussetzungen für die Vergabe von Leistungspunkten</th>
+                    <td colspan="2">{{ object.requirements_for_the_award_of_credit_points }}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Leistungspunkte und Noten</th>
+                    <td colspan="2">{{ object.credits_and_grades }}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Häufigkeit des Moduls</th>
+                    <td colspan="2">{{ object.frequency_of_the_module }}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Arbeitsaufwand</th>
+                    <td colspan="2">{{ object.workload }}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Dauer des Moduls</th>
+                    <td colspan="2">{{ object.duration_of_the_module }}</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </article>
+{% endblock %}

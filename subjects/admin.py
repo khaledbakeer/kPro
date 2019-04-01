@@ -12,8 +12,8 @@ class PageAdmin(admin.ModelAdmin):
         'responsible_lecturer_name',
         'responsible_lecturer_email',
         'date_updated')
-    # list_display_links = ('id', 'title')
-    # search_fields = ('title', 'content')
+    list_display_links = ('subject_number', 'subject_name')
+    search_fields = ('subject_number', 'subject_name', 'responsible_lecturer_name', 'content_and_goals')
     list_per_page = 25
 
 

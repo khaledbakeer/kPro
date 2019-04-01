@@ -8,3 +8,7 @@ script:
   - python3 manage.py migrate
   - python3 manage.py makemigrations
   - python3 manage.py test
+  # just a test :-)
+  - coverage run manage.py test
+after_success:
+  - codecov

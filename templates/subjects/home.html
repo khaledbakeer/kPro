@@ -1,0 +1,103 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    {% for subject in subjects %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    {#                    <a class="mr-2" href="{% url 'user_posts' subject.author.username %}">{{ subject.author }}</a>#}
+                    <small class="text-muted">{{ subject.date_posted|date:"d.m.Y | G:i" }}</small>
+                </div>
+                {#                <h2><a class="article-title" href="#">{{ subject.subject_name }}</a></h2>#}
+                {#                <p class="article-content">{{ subject.content_and_goals }}</p>#}
+
+
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">Modulnummer</th>
+                        <th scope="col">Modulname</th>
+                        <th scope="col">Verantwortlicher Dozent</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td rowspan="2">{{ subject.subject_number }}</td>
+                        <td rowspan="2">{{ subject.subject_name }}</td>
+                        <td>{{ subject.responsible_lecturer_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ subject.responsible_lecturer_email }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Inhalte und Qualifikationsziele</th>
+                        <td colspan="2">{{ subject.content_and_goals }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Lehr- und Lernformen</th>
+                        <td colspan="2">{{ subject.teaching_and_learning_forms }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Voraussetzungen für die Teilnahme</th>
+                        <td colspan="2">{{ subject.requirements_for_participation }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Verwendbarkeit</th>
+                        <td colspan="2">{{ subject.usability }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Voraussetzungen für die Vergabe von Leistungspunkten</th>
+                        <td colspan="2">{{ subject.requirements_for_the_award_of_credit_points }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Leistungspunkte und Noten</th>
+                        <td colspan="2">{{ subject.credits_and_grades }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Häufigkeit des Moduls</th>
+                        <td colspan="2">{{ subject.frequency_of_the_module }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Arbeitsaufwand</th>
+                        <td colspan="2">{{ subject.workload }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Dauer des Moduls</th>
+                        <td colspan="2">{{ subject.duration_of_the_module }}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </article>
+    {% endfor %}
+    {% if is_paginated %}
+
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outlin-info mb-4" href="?page=1">First</a>
+            <a class="btn btn-outlin-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-outlin-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outlin-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+
+    {% endif %}
+{% endblock %}

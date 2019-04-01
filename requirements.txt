@@ -6,4 +6,3 @@ Pillow
 python-etcd
 pytz
 urllib3
-codecov

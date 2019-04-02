@@ -7,7 +7,7 @@
                     {#                    <a class="mr-2" href="{% url 'user_posts' subject.author.username %}">{{ subject.author }}</a>#}
                     <a class="article-title" href="{% url 'subject_detail' subject.id %}">{{ subject.subject_name }}</a>
 
-                    <small class="text-muted right">   created at: {{ subject.date_posted|date:"d.m.Y | G:i" }}</small>
+                    <small class="text-muted right"> created at: {{ subject.date_posted|date:"d.m.Y | G:i" }}</small>
                 </div>
                 {#                <p class="article-content">{{ subject.content_and_goals }}</p>#}
 
@@ -30,51 +30,6 @@
 
                         <td><a href="mailto:{{ subject.responsible_lecturer_email }}">E-Mail schreiben</a></td>
                     </tr>
-
-                    {#                    <tr>#}
-                    {#                        <th scope="row">Inhalte und Qualifikationsziele</th>#}
-                    {#                        <td colspan="2">{{ subject.content_and_goals }}</td>#}
-                    {#                    </tr>#}
-                    {##}
-                    {#                    <tr>#}
-                    {#                        <th scope="row">Lehr- und Lernformen</th>#}
-                    {#                        <td colspan="2">{{ subject.teaching_and_learning_forms }}</td>#}
-                    {#                    </tr>#}
-                    {##}
-                    {#                    <tr>#}
-                    {#                        <th scope="row">Voraussetzungen für die Teilnahme</th>#}
-                    {#                        <td colspan="2">{{ subject.requirements_for_participation }}</td>#}
-                    {#                    </tr>#}
-                    {##}
-                    {#                    <tr>#}
-                    {#                        <th scope="row">Verwendbarkeit</th>#}
-                    {#                        <td colspan="2">{{ subject.usability }}</td>#}
-                    {#                    </tr>#}
-                    {##}
-                    {#                    <tr>#}
-                    {#                        <th scope="row">Voraussetzungen für die Vergabe von Leistungspunkten</th>#}
-                    {#                        <td colspan="2">{{ subject.requirements_for_the_award_of_credit_points }}</td>#}
-                    {#                    </tr>#}
-                    {##}
-                    {#                    <tr>#}
-                    {#                        <th scope="row">Leistungspunkte und Noten</th>#}
-                    {#                        <td colspan="2">{{ subject.credits_and_grades }}</td>#}
-                    {#                    </tr>#}
-                    {##}
-                    {#                    <tr>#}
-                    {#                        <th scope="row">Häufigkeit des Moduls</th>#}
-                    {#                        <td colspan="2">{{ subject.frequency_of_the_module }}</td>#}
-                    {#                    </tr>#}
-                    {##}
-                    {#                    <tr>#}
-                    {#                        <th scope="row">Arbeitsaufwand</th>#}
-                    {#                        <td colspan="2">{{ subject.workload }}</td>#}
-                    {#                    </tr>#}
-                    {##}
-                    {#                    <tr>#}
-                    {#                        <th scope="row">Dauer des Moduls</th>#}
-                    {#                        <td colspan="2">{{ subject.duration_of_the_module }}</td>#}
-                    {#                    </tr>#}
 
                     </tbody>
                 </table>

@@ -24,6 +24,14 @@ class SubjectListView(ListView):
 class SubjectDetailView(DetailView):  # one post
     model = Subject
 
+    def get_context_data(self, **kwargs):
+        context = super(SubjectDetailView, self).get_context_data(**kwargs)
+        context['SubjectDetailView'] = {
+            'left_sidebar': 'T',
+            'right_sidebar': 'T'
+        }
+        return context
+
 
 class SubjectPostListView(ListView):
     """
@@ -38,13 +46,10 @@ class SubjectPostListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(SubjectPostListView, self).get_context_data(**kwargs)
         context['Subject_Post_List_View'] = {
-            'left_sidebar': {
-                'About': 'about'
-            },
-            'right_sidebar': {
-                'Posts': '/subjects/' + str(self.subject.id) + '/posts/'
-            }
+            'left_sidebar': 'T',
+            'right_sidebar': 'T'
         }
+        context['s_id'] = str(self.subject.id)
         return context
 
     def get_queryset(self):

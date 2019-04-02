@@ -16,13 +16,16 @@
         </ul>
         <p></p>
 
-        {% if Subject_Post_List_View %}
-
+        {% if Subject_Post_List_View.left_sidebar %}
             <ul class="list-group">
-                {% for key, value in Subject_Post_List_View.right_sidebar.items %}
-                    <a href="{{ value }}" class="list-group-item list-group-item-light">{{ key }}
-                    </a>
-                {% endfor %}
+                <a href="/subjects/{{ s_id }}/posts" class="list-group-item list-group-item-light"> Posts</a>
+            </ul>
+            <p></p>
+        {% endif %}
+
+        {% if SubjectDetailView.left_sidebar %}
+            <ul class="list-group">
+                <a href="/subjects/{{ subject.id }}/posts" class="list-group-item list-group-item-light"> Posts</a>
             </ul>
             <p></p>
         {% endif %}

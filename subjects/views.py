@@ -8,7 +8,7 @@ from blog.models import Post
 
 def home(request):
     context = {
-        'subjects': Subject.objects.all()
+        'subjects': Subject.objects.all(),
     }
     return render(request, 'subjects/home.html', context)
 
@@ -34,6 +34,11 @@ class SubjectPostListView(ListView):
     context_object_name = 'posts'
     paginate_by = 5
 
+    def get_context_data(self, **kwargs):
+        context = super(SubjectPostListView, self).get_context_data(**kwargs)
+        context['right_sidbare'] = 'right sidebar from SubjectPostListView'
+        return context
+
     def get_queryset(self):
-        subject = get_object_or_404(Subject, subject_name=self.kwargs.get('subject_name'))
+        subject = get_object_or_404(Subject, id=self.kwargs.get('id'))
         return Post.objects.filter(subject=subject).order_by('-date_posted')

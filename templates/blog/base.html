@@ -50,26 +50,7 @@
 <main role="main" class="container-fluid">
     <div class="row">
         {% if user.is_authenticated %}
-            <div class="col-md-3">
-                <div class="content-section">
-                    <div class="media">
-                        <img src="{{ user.profile.image.url }}" alt="" class="rounded-circle account-img">
-                        <div class="media-body">
-                            <h2 class="account-heading">{{ user.username }}</h2>
-                            <p class="text-secondary">{{ user.email }}</p>
-                        </div>
-                    </div>
-                    <ul class="list-group">
-                        <a href="{% url 'blog_homePage' %}"
-                           class="list-group-item list-group-item-light">Home</a>
-
-                        <a href="{% url 'subject_homePage' %}"
-                           class="list-group-item list-group-item-light">Subjects</a>
-
-                    </ul>
-                    </p>
-                </div>
-            </div>
+            {% include 'blog/Temp/left_sidebar.html' %}
         {% endif %}
         <div class="col-md-6">
             {% if messages %}
@@ -82,28 +63,7 @@
             {% block content %}{% endblock %}
         </div>
         {% if user.is_authenticated %}
-            {% if right_sidbare %}
-                <div class="col-md-3">
-                    <div class="content-section">
-                        <ul class="list-group">
-                            {{ right_sidbare }}
-                        </ul>
-                        </p>
-                    </div>
-                </div>
-            {% else %}
-                <div class="col-md-3">
-                    <div class="content-section">
-                        <ul class="list-group">
-                            <li class="list-group-item list-group-item-light">Latest Posts</li>
-                            <li class="list-group-item list-group-item-light">Announcements</li>
-                            <li class="list-group-item list-group-item-light">Calendars</li>
-                            <li class="list-group-item list-group-item-light">etc</li>
-                        </ul>
-                        </p>
-                    </div>
-                </div>
-            {% endif %}
+            {% include 'blog/Temp/right_sidebar.html' %}
         {% endif %}
     </div>
 </main>

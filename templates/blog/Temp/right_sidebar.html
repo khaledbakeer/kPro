@@ -1,0 +1,26 @@
+{% if Subject_Post_List_View %}
+    <div class="col-md-3">
+        <div class="content-section">
+            <p></p>
+            <ul class="list-group">
+                {% for key, value in Subject_Post_List_View.right_sidebar.items %}
+                    <li class="list-group-item list-group-item-light"><a href="{{ value }}">{{ key }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            </p>
+        </div>
+    </div>
+{% else %}
+    <div class="col-md-3">
+        <div class="content-section">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Latest Posts</li>
+                <li class="list-group-item list-group-item-light">Announcements</li>
+                <li class="list-group-item list-group-item-light">Calendars</li>
+                <li class="list-group-item list-group-item-light">etc</li>
+            </ul>
+            </p>
+        </div>
+    </div>
+{% endif %}

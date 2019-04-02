@@ -33,12 +33,20 @@ class SubjectPostListView(ListView):
     template_name = 'subjects/subject_posts.html'  # antwort auf debug message von: <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     paginate_by = 5
+    subject = None
 
     def get_context_data(self, **kwargs):
         context = super(SubjectPostListView, self).get_context_data(**kwargs)
-        context['right_sidbare'] = 'right sidebar from SubjectPostListView'
+        context['Subject_Post_List_View'] = {
+            'left_sidebar': {
+                'About': 'about'
+            },
+            'right_sidebar': {
+                'Posts': '/subjects/' + str(self.subject.id) + '/posts/'
+            }
+        }
         return context
 
     def get_queryset(self):
-        subject = get_object_or_404(Subject, id=self.kwargs.get('id'))
-        return Post.objects.filter(subject=subject).order_by('-date_posted')
+        self.subject = get_object_or_404(Subject, id=self.kwargs.get('id'))
+        return Post.objects.filter(subject=self.subject).order_by('-date_posted')

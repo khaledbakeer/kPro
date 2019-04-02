@@ -49,7 +49,7 @@ class PostDetailView(DetailView):  # one post
 
 class PostCreateView(LoginRequiredMixin, CreateView):  # to view new post have to be logged in
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'subject']
 
     def form_valid(self, form):
         form.instance.author = self.request.user

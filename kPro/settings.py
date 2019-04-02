@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_wysiwyg',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
@@ -125,3 +127,5 @@ LOGIN_URL = 'login'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+DJANGO_WYSIWYG_FLAVOR = "ckeditor"
